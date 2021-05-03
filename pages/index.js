@@ -1,10 +1,10 @@
-import Head from "next/head";
 import { useEffect } from "react";
 import { gameMachine } from "../lib/machines";
 import { useMachine } from "@xstate/react";
 import { Setup } from "../components/setup";
 import { Winner } from "../components/winner";
 import { Board } from "../components/board";
+import { Container } from "@/components/Container";
 
 const validKeys = ["0", "1", "2"];
 
@@ -44,11 +44,7 @@ export default function Home() {
   }, [value]);
 
   return (
-    <div className="h-screen grid items-center ">
-      <Head>
-        <title>Pong</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <Container>
       {value === "setup" && (
         <Setup
           onSetup={({ player1, player2 }) =>
@@ -66,6 +62,6 @@ export default function Home() {
           newGame={() => sendMachine("NEW_GAME")}
         />
       )}
-    </div>
+    </Container>
   );
 }
