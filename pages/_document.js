@@ -35,6 +35,7 @@ class MyDocument extends Document {
             content="/favicons/browserconfig.xml"
             name="msapplication-config"
           />
+          <meta name="apple-mobile-web-app-capable" content="yes" />
         </Head>
         <body>
           <Main />
