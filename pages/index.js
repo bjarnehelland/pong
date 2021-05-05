@@ -53,7 +53,12 @@ export default function Home() {
         />
       )}
       {(value === "toServe" || value == "playing") && (
-        <Board player1={player1} player2={player2} toServe={toServe} />
+        <Board
+          player1={player1}
+          player2={player2}
+          toServe={toServe}
+          addPoint={(player) => sendMachine("POINT", { player })}
+        />
       )}
       {value === "winner" && (
         <Winner
