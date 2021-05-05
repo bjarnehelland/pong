@@ -21,12 +21,6 @@ export default function Home() {
     function handleKeyboardEvent(e) {
       if (!validKeys.includes(e.key)) return;
 
-      if (value === "toServe") {
-        var player = e.key === "1" ? "player1" : "player2";
-        sendMachine("SERVE_WON", { player });
-        return;
-      }
-
       if (e.key === "1") {
         sendMachine("POINT", { player: "player1" });
       }
@@ -34,7 +28,7 @@ export default function Home() {
         sendMachine("POINT", { player: "player2" });
       }
       if (e.key === "0") {
-        sendMachine("NEW_GAME");
+        sendMachine("REMATCH");
       }
     }
     document.addEventListener("keydown", handleKeyboardEvent);
