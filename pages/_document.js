@@ -36,6 +36,10 @@ class MyDocument extends Document {
             name="msapplication-config"
           />
           <meta name="apple-mobile-web-app-capable" content="yes" />
+          <meta
+            name="apple-mobile-web-app-status-bar-style"
+            content="#f3f4f6"
+          />
         </Head>
         <body className="bg-gray-100">
           <Main />
