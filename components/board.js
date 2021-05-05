@@ -13,7 +13,7 @@ export function Board({ player1, player2, toServe }) {
 function Player({ player, toServe }) {
   return (
     <>
-      <Box className="truncate">{player.name}</Box>
+      <Box className="truncate px-4">{player.name}</Box>
       <div>{toServe && "•"}</div>
       <Box className="text-right">{player.score}</Box>
     </>
