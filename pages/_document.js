@@ -37,7 +37,7 @@ class MyDocument extends Document {
           />
           <meta name="apple-mobile-web-app-capable" content="yes" />
         </Head>
-        <body>
+        <body className="bg-gray-100">
           <Main />
           <NextScript />
         </body>
