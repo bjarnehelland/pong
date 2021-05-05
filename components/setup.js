@@ -12,10 +12,25 @@ export function Setup({ onSetup }) {
     });
   };
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col justify-self-center">
-      <input ref={player1Ref} placeholder="Player1" required />
-      <input ref={player2Ref} placeholder="Player2" required />
-      <button type="submit">New game</button>
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col justify-self-center gap-4"
+    >
+      <input
+        ref={player1Ref}
+        placeholder="Player1"
+        required
+        className="p-4 text-6xl"
+      />
+      <input
+        ref={player2Ref}
+        placeholder="Player2"
+        required
+        className="p-4 text-6xl"
+      />
+      <button className="text-4xl" type="submit">
+        New game
+      </button>
     </form>
   );
 }

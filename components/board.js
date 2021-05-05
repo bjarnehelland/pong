@@ -1,15 +1,27 @@
 export function Board({ player1, player2, toServe }) {
   return (
     <div
-      style={{ fontSize: "14vw" }}
-      className="grid grid-cols-board gap-8  font-mono border border-gray-300 m-8"
+      style={{ fontSize: "14vw", lineHeight: 1.2 }}
+      className="grid grid-cols-board gap-y-4 font-mono m-4"
     >
-      <div className="truncate">{player1.name}</div>
-      <div>{toServe === "player1" && "•"}</div>
-      <div className="text-right">{player1.score}</div>
-      <div className="truncate">{player2.name}</div>
-      <div>{toServe === "player2" && "•"}</div>
-      <div className="text-right">{player2.score}</div>
+      <Player player={player1} toServe={toServe === "player1"} />
+      <Player player={player2} toServe={toServe === "player2"} />
     </div>
+  );
+}
+
+function Player({ player, toServe }) {
+  return (
+    <>
+      <Box className="truncate">{player.name}</Box>
+      <div>{toServe && "•"}</div>
+      <Box className="text-right">{player.score}</Box>
+    </>
+  );
+}
+
+function Box({ children, className }) {
+  return (
+    <div className={`rounded-lg bg-gray-200 ${className}`}>{children}</div>
   );
 }

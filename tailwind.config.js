@@ -6,7 +6,7 @@ module.exports = {
     extend: {
       gridTemplateColumns: {
         // Complex site-specific column configuration
-        board: "1fr auto auto",
+        board: "1fr 8vw 17vw",
       },
     },
   },

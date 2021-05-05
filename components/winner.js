@@ -1,9 +1,13 @@
 export function Winner({ name, rematch, newGame }) {
   return (
-    <div className="flex flex-col justify-self-center">
+    <div className="flex flex-col justify-self-center gap-4">
       <div style={{ fontSize: "10vw" }}>The winner is {name}</div>
-      <button onClick={() => rematch()}>Rematch</button>
-      <button onClick={() => newGame()}>New game</button>
+      <button className="text-4xl" onClick={() => rematch()}>
+        Rematch
+      </button>
+      <button className="text-4xl" onClick={() => newGame()}>
+        New game
+      </button>
     </div>
   );
 }

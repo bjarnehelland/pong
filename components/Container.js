@@ -16,7 +16,7 @@ export function Container(props) {
   };
 
   return (
-    <div className="h-screen grid items-center">
+    <div className="h-screen grid items-center bg-gray-100">
       <Head>
         <title>{meta.title}</title>
         <meta name="robots" content="follow, index" />
