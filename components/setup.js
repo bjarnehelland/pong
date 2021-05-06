@@ -18,15 +18,15 @@ export function Setup({ onSetup }) {
     >
       <input
         ref={player1Ref}
-        placeholder="Player1"
+        placeholder="Player 1"
         required
-        className="p-4 text-6xl"
+        className="p-4 mx-3 text-6xl"
       />
       <input
         ref={player2Ref}
-        placeholder="Player2"
+        placeholder="Player 2"
         required
-        className="p-4 text-6xl"
+        className="p-4 mx-3 text-6xl"
       />
       <button className="text-4xl" type="submit">
         New game

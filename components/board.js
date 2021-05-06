@@ -21,19 +21,14 @@ export function Board({ player1, player2, toServe, addPoint }) {
 function Player({ player, toServe, addPoint }) {
   return (
     <>
-      <Box className="truncate px-4">{player.name}</Box>
-      <div>{toServe && "•"}</div>
-      <Box className="text-right" onClick={() => addPoint()}>
+      <div className="shadow-xl rounded-lg px-2 bg-gray-200">{player.name}</div>
+      <div className={toServe ? "visible" : "invisible"}>{"•"}</div>
+      <button
+        className="shadow-xl rounded-lg px-2 bg-gray-200 text-right"
+        onClick={addPoint}
+      >
         {player.score}
-      </Box>
+      </button>
     </>
-  );
-}
-
-function Box({ children, className, onClick }) {
-  return (
-    <div onClick={onClick} className={`rounded-lg bg-gray-200 ${className}`}>
-      {children}
-    </div>
   );
 }
