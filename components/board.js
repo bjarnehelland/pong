@@ -14,6 +14,7 @@ export function Board({ player1, player2, toServe, addPoint }) {
         toServe={toServe === "player2"}
         addPoint={() => addPoint("player2")}
       />
+      
     </div>
   );
 }
