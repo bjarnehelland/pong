@@ -7,10 +7,11 @@ import { Board } from "../components/board";
 import { Container } from "@/components/Container";
 import { signIn, signOut, useSession } from "next-auth/client";
 import { connectToDatabase } from "util/mongodb";
+import { User } from "@/components/user";
 
 const validKeys = ["0", "1", "2"];
 
-export default function Home({ isConnected }) {
+export default function Home({ isConnected, users }) {
   const [
     {
       context: { player1, player2, toServe, winner, timeline },
@@ -43,6 +44,9 @@ export default function Home({ isConnected }) {
 
   return (
     <Container>
+      {users.map((user) => (
+        <User key={user._id} user={user} />
+      ))}
       {isConnected ? (
         <h2 className="subtitle">You are connected to MongoDB</h2>
       ) : (
@@ -92,11 +96,12 @@ export default function Home({ isConnected }) {
 }
 
 export async function getServerSideProps(context) {
-  const { client } = await connectToDatabase();
+  const { client, db } = await connectToDatabase();
 
   const isConnected = await client.isConnected();
+  const users = await db.collection("users").find({}).toArray();
 
   return {
-    props: { isConnected },
+    props: { isConnected, users: JSON.parse(JSON.stringify(users)) },
   };
 }
