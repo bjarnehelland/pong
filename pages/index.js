@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { gameMachine } from "../lib/machines";
+import { gameMachine, serve } from "../lib/machines";
 import { useMachine } from "@xstate/react";
 import { Setup } from "../components/setup";
 import { Winner } from "../components/winner";
@@ -9,14 +9,9 @@ import { Container } from "@/components/Container";
 const validKeys = ["0", "1", "2"];
 
 export default function Home() {
-  const [
-    {
-      context: { player1, player2, toServe, winner },
-      value,
-    },
-    sendMachine,
-  ] = useMachine(gameMachine);
-
+  const [{ context, value }, sendMachine] = useMachine(gameMachine);
+  const { player1, player2, score, winner } = context;
+  const toServe = serve(context);
   useEffect(() => {
     function handleKeyboardEvent(e) {
       if (!validKeys.includes(e.key)) return;
@@ -28,7 +23,7 @@ export default function Home() {
         sendMachine("POINT", { player: "player2" });
       }
       if (e.key === "0") {
-        sendMachine("REMATCH");
+        sendMachine("UNDO");
       }
     }
     document.addEventListener("keydown", handleKeyboardEvent);
@@ -36,7 +31,6 @@ export default function Home() {
       document.removeEventListener("keydown", handleKeyboardEvent);
     };
   }, [value]);
-
   return (
     <Container>
       {value === "setup" && (
@@ -50,13 +44,14 @@ export default function Home() {
         <Board
           player1={player1}
           player2={player2}
+          score={score}
           toServe={toServe}
           addPoint={(player) => sendMachine("POINT", { player })}
         />
       )}
       {value === "winner" && (
         <Winner
-          name={winner === "player1" ? player1.name : player2.name}
+          name={winner === "player1" ? player1 : player2}
           rematch={() => sendMachine("REMATCH")}
           newGame={() => sendMachine("NEW_GAME")}
         />
