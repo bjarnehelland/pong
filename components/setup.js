@@ -14,7 +14,7 @@ export function Setup({ onSetup }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col justify-self-center gap-4 overflow-hidden max-w-full"
+      className="flex flex-col justify-self-center gap-4 overflow-hidden pt-1 max-w-full"
     >
       <input
         ref={player1Ref}
