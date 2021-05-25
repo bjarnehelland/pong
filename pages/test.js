@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Replicache } from "replicache";
 import { useSubscribe } from "replicache-react-util";
 import Pusher from "pusher-js";
-
+const isDev = process.env.NODE_ENV === "development";
 export default function Home() {
   const [rep, setRep] = useState(null);
 
@@ -13,7 +13,7 @@ export default function Home() {
       // The .dev.wasm version is nice during development because it has
       // symbols and additional debugging info. The .wasm version is smaller
       // and faster.
-      wasmModule: "/replicache.dev.wasm",
+      wasmModule: isDev ? "/replicache.dev.wasm" : "/replicache.wasm",
     });
     registerMutators(rep);
     // TODO: https://github.com/rocicorp/replicache/issues/328
