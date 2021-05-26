@@ -70,7 +70,7 @@ export default async (req, res) => {
         "UPDATE replicache_client SET last_mutation_id = $2 WHERE id = $1",
         [push.clientID, lastMutationID]
       );
-      res.send("ok");
+      res.status(200).json({});
     });
   } catch (e) {
     console.error(e);

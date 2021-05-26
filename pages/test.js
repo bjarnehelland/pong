@@ -31,7 +31,7 @@ function Chat({ rep }) {
   const messages = useSubscribe(
     rep,
     async (tx) => {
-      const list = await tx.scanAll({ prefix: "message/" });
+      const list = await tx.scan({ prefix: "message/" }).entries().toArray();
       list.sort(([, { order: a }], [, { order: b }]) => a - b);
       return list;
     },
@@ -117,7 +117,6 @@ function registerMutators(rep) {
 }
 
 function listen(rep) {
-  return;
   console.log("listening");
   // Listen for pokes, and pull whenever we get one.
   Pusher.logToConsole = true;
