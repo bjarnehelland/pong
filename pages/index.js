@@ -1,15 +1,37 @@
 import { useEffect } from "react";
-import { gameMachine, serve } from "../lib/machines";
+import { gameMachine } from "../lib/machines";
 import { useMachine } from "@xstate/react";
 import { Setup } from "../components/setup";
 import { Winner } from "../components/winner";
 import { Board } from "../components/board";
 import { Container } from "@/components/Container";
+import { inspect } from "@xstate/inspect";
 
+const isDev = process.env.NODE_ENV === "development";
+if (typeof window !== "undefined" && isDev) {
+  inspect({
+    url: "https://statecharts.io/inspect",
+    iframe: false,
+  });
+}
 const validKeys = ["0", "1", "2"];
 
+function serve({ history, startToServe }) {
+  const totalScore = history.length;
+
+  const toServe = Math.floor((totalScore / 2) % 2)
+    ? startToServe === "player1"
+      ? "player2"
+      : "player1"
+    : startToServe;
+
+  return toServe;
+}
+
 export default function Home() {
-  const [{ context, value }, sendMachine] = useMachine(gameMachine);
+  const [{ context, value }, sendMachine] = useMachine(gameMachine, {
+    devTools: isDev,
+  });
   const { player1, player2, score, winner } = context;
   const toServe = serve(context);
   useEffect(() => {
