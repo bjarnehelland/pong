@@ -30,7 +30,7 @@ export default function Home() {
     return () => {
       document.removeEventListener("keydown", handleKeyboardEvent);
     };
-  }, [value]);
+  }, [sendMachine, value]);
   return (
     <Container>
       {value === "setup" && (
