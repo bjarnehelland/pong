@@ -25,7 +25,7 @@ export default async (req, res) => {
           [push.clientID, lastMutationID]
         );
       }
-      console.log("version", version, "lastMutationID:", lastMutationID);
+      console.log("version", version, "lastMutationID:", lastMutationID, push);
 
       for (let i = 0; i < push.mutations.length; i++) {
         const t1 = Date.now();
@@ -47,8 +47,8 @@ export default async (req, res) => {
         console.log("Processing mutation:", JSON.stringify(mutation, null, ""));
 
         switch (mutation.name) {
-          case "createMessage":
-            await createMessage(db, mutation.args, version);
+          case "createMatch":
+            await createMatch(db, mutation.args, version);
             break;
           default:
             throw new Error(`Unknown mutation: ${mutation.name}`);
@@ -80,12 +80,12 @@ export default async (req, res) => {
   }
 };
 
-async function createMessage(db, { id, from, content, order }, version) {
+async function createMatch(db, { id, player1, player2, order }, version) {
   await db.none(
-    `INSERT INTO message (
-    id, sender, content, ord, version) values 
-    ($1, $2, $3, $4, $5)`,
-    [id, from, content, order, version]
+    `INSERT INTO match (
+    id, player1, player1score, player2, player2score, ord, version) values 
+    ($1, $2, 0, $3, 0, $4, $5)`,
+    [id, player1, player2, order, version]
   );
 }
 
