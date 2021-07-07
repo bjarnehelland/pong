@@ -10,25 +10,28 @@
   },
   "dependencies": {
     "@slack/web-api": "^6.2.4",
-    "@xstate/react": "^1.4.0",
+    "@types/mongodb": "^3.6.20",
+    "@xstate/react": "^1.5.1",
     "framer-motion": "^4.1.17",
-    "mongodb": "^3.6.9",
+    "mongodb": "^3.6.10",
     "nanoid": "^3.1.23",
     "next": "11.0.1",
-    "next-auth": "^3.27.1",
+    "next-auth": "^3.27.2",
     "next-connect": "^0.10.1",
     "react": "17.0.2",
     "react-confetti": "^6.0.1",
     "react-dom": "17.0.2",
     "tsscmp": "^1.0.6",
-    "xstate": "^4.20.2"
+    "xstate": "^4.22.0"
   },
   "devDependencies": {
+    "@types/react": "^17.0.13",
     "autoprefixer": "^10.2.6",
-    "eslint": "^7.29.0",
+    "eslint": "^7.30.0",
     "eslint-config-next": "^11.0.1",
     "eslint-config-prettier": "^8.3.0",
     "postcss": "^8.3.5",
-    "tailwindcss": "^2.2.4"
+    "tailwindcss": "^2.2.4",
+    "typescript": "^4.3.5"
   }
 }

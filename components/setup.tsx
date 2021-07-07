@@ -1,15 +1,15 @@
-import { useRef } from "react";
+import { FormEvent, useRef } from "react";
 
-export function Setup({ onSetup }) {
-  const player1Ref = useRef();
-  const player2Ref = useRef();
-  const handleSubmit = (e) => {
+type Props = {
+  onSetup: (player1: string, player2: string) => void;
+};
+export function Setup({ onSetup }: Props) {
+  const player1Ref = useRef<HTMLInputElement>();
+  const player2Ref = useRef<HTMLInputElement>();
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    onSetup({
-      player1: player1Ref.current.value,
-      player2: player2Ref.current.value,
-    });
+    onSetup(player1Ref.current?.value, player2Ref.current?.value);
   };
   return (
     <form
